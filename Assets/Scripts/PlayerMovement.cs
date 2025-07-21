@@ -7,7 +7,8 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 5f,jumpForce=5f;
     public float leftRightSpeed = 4f;
     public static bool canMove =false;
-    private bool isGround;
+    public bool isGround=true;
+    private bool isRun = true;
     private Rigidbody rb;
     // Update is called once per frame
     private void Start()
@@ -16,7 +17,12 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
-        transform.Translate(Vector3.forward *moveSpeed*Time.deltaTime,Space.World);
+        if (transform.position.y < 1.6f && isGround==false)
+        {
+            isGround = true;
+            rb.useGravity = false;
+        }
+        if(isRun)transform.Translate(Vector3.forward *moveSpeed*Time.deltaTime);
         if(canMove)
         {
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
@@ -36,17 +42,23 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetKey(KeyCode.UpArrow) && isGround)
             {
                 rb.useGravity = true;
-                rb.AddForce(Vector3.up*jumpForce*Time.deltaTime);
+                rb.AddForce(Vector3.up*jumpForce);
+                AnimationManager.instance.PlayeAnimation(AnimationManager.AnimationState.Jump);
                 isGround = false;
             }
         }
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        //if (collision.gameObject.CompareTag("Ground"))
+        //{
+        //    isGround = true;
+        //    rb.useGravity = false;
+        //}
+        if (collision.gameObject.tag == "obstacle")
         {
-            isGround = true;
-            rb.useGravity = false;
+            isRun = false;
+            AnimationManager.instance.PlayeAnimation(AnimationManager.AnimationState.FallBack);
         }
     }
 }
