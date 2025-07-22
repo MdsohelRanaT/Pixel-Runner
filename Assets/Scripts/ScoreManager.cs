@@ -6,7 +6,7 @@ public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager instance;
     [Header("Score")]
-    public float score;
+    public int score;
     private void Awake()
     {
         if (instance == null) instance = this;

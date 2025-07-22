@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -25,8 +26,22 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         //Game over menu show
+        int highScore = PlayerPrefs.GetInt("highScore", 0);
+        int score = ScoreManager.instance.score;
+        if (score > highScore)
+        {
+            PlayerPrefs.SetInt("highScore", score);
+        }
         UIManager.instance.GameOverMenu();
         LevelDistance.instance.StopAddingDis();
         AnimationManager.instance.PlayeAnimation(AnimationManager.AnimationState.FallBack);
+    }
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    public void Exit()
+    {
+        Application.Quit();
     }
 }

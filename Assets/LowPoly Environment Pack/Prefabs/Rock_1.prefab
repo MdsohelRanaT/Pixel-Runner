@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 33812786653949958}
   - component: {fileID: 23672204903577092}
   - component: {fileID: 8557617424855940953}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Rock_1
-  m_TagString: Untagged
+  m_TagString: obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.00000003774895, y: 0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -103,5 +103,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.5476623, y: 0.39446247, z: 1.571106}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 2.5476623, y: 0.41468018, z: 1.571106}
+  m_Center: {x: 0, y: 0.18457606, z: 0.0000000139351055}

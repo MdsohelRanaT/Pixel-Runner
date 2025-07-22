@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -10,13 +12,20 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 5f,jumpHeight=3f;
     public float leftRightSpeed = 4f;
     public bool isGrounded=true;
-    public bool isRun = false;
+    public bool isRun = true;
+    public bool canMove = false;
     public Vector3 velocity;
     public float gravity = -9.81f;
     public Transform groundCheck;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
     public float minX, maxX;
+    public float smoothFactor = 10f;
+    [Header("Android Controller")]
+    public Vector3 startPos,endPos;
+    public float minSwipeDis = 1f;
+    public float maxTime = 2f;
+    public float startTime, endTime;
     private void Awake()
     {
         if (instance == null) instance = this;
@@ -29,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position,groundDistance,groundMask);
-        if (isRun)
+        if (isRun) 
         {
             UIManager.instance.UpdateDistanceAndScore();
             Movement();
@@ -42,6 +51,31 @@ public class PlayerMovement : MonoBehaviour
     void Movement()
     {
         controller.Move(transform.forward * moveSpeed * Time.deltaTime);
+        if(canMove)
+        {
+#if UNITY_ANDROID
+        HandleAndroidInput();
+#else
+            HandleAnotherInput();
+#endif
+        }
+
+
+    }
+    void HandleAndroidInput()
+    {
+        float x = Input.acceleration.x;
+        controller.Move(transform.right * x * leftRightSpeed*2 * Time.deltaTime);
+        Vector3 currentPos = transform.position;
+        currentPos.x = Mathf.Clamp(currentPos.x, minX, maxX);
+        Vector3 move = currentPos-transform.position;
+        controller.Move(move);
+
+        AndroidJumpInput();
+        
+    }
+    void HandleAnotherInput()
+    {
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             if (gameObject.transform.position.x > minX)
@@ -59,6 +93,32 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             Jump();
+        }
+    }
+
+    void AndroidJumpInput()
+    {
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+            if(touch.phase == TouchPhase.Began)
+            {
+                startPos = touch.position;
+                startTime = Time.time;
+            }
+            else if(touch.phase == TouchPhase.Ended)
+            {
+                endTime = Time.time;
+                endPos = touch.position;
+                Vector3 distance = endPos - startPos;
+                float swipeDist = distance.magnitude;
+                float swipeTime = endTime - startTime;
+                bool isJump = distance.y > distance.x;
+                if (swipeDist >= minSwipeDis && swipeTime < maxTime && isJump) Jump();
+            }
+
+            
+
         }
     }
     void Jump()
@@ -81,6 +141,7 @@ public class PlayerMovement : MonoBehaviour
         if (hit.gameObject.tag == "obstacle")
         {
             isRun = false;
+            canMove = false;
             GameManager.instance.GameOver();
         }
     }
