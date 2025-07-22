@@ -12,7 +12,7 @@ public class GenerateLevel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isCreatingSection)
+        if (!isCreatingSection && GameManager.instance.started)
         {
             isCreatingSection = true;
             StartCoroutine(CreateSection());

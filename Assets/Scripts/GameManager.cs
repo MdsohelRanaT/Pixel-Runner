@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    public bool started=false;
     private void Awake()
     {
         if (instance == null) instance = this;
@@ -22,7 +23,12 @@ public class GameManager : MonoBehaviour
     {
         
     }
-
+    public void StartGame()
+    {
+        LevelStarter.instance.StartCounting();
+        started = true;
+        AnimationManager.instance.PlayeAnimation(AnimationManager.AnimationState.Run);
+    }
     public void GameOver()
     {
         //Game over menu show

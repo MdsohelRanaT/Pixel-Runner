@@ -4,12 +4,19 @@ using UnityEngine;
 
 public class LevelStarter : MonoBehaviour
 {
+    public static LevelStarter instance;
     // Start is called before the first frame update
     [SerializeField]
     private GameObject countDown3,countDown2,countDown1,countDownGo,fadeIn;
+
+    private void Awake()
+    {
+        if (instance == null) instance = this;
+        else Destroy(instance);
+    }
     void Start()
     {
-        StartCoroutine(CountSequence());
+        
     }
     IEnumerator CountSequence()
     {
@@ -23,5 +30,9 @@ public class LevelStarter : MonoBehaviour
         yield return new WaitForSeconds(1f);
         countDownGo.SetActive(true);
         PlayerMovement.instance.canMove=true;
+    }
+    public void StartCounting()
+    {
+        StartCoroutine(CountSequence());
     }
 }

@@ -37,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
+        if(!GameManager.instance.started) return;
         isGrounded = Physics.CheckSphere(groundCheck.position,groundDistance,groundMask);
         if (isRun) 
         {
