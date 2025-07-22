@@ -30,7 +30,6 @@ public class AnimationManager : MonoBehaviour
     public void PlayeAnimation(AnimationState state)
     {
         string newState = state.ToString();
-        if(currentState == newState) return;
         animator.ResetTrigger(currentState);
         animator.SetTrigger(newState);
         currentState = newState;

@@ -10,7 +10,7 @@ public class CollectCoin : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             gameObject.SetActive(false);
-            CollectTableControl.Instance.coinCount++;
+            ScoreManager.instance.IncreseScore();
             SoundManager.instance.CollectCoinSound();
         }
         

@@ -9,6 +9,7 @@ public class SoundManager : MonoBehaviour
     public AudioSource audioSource;
     [Header("Audio Clip")]
     public AudioClip coinSoundClip;
+    public AudioClip countDownClip;
     private void Awake()
     {
         if(instance == null) instance = this;
@@ -28,5 +29,9 @@ public class SoundManager : MonoBehaviour
     public void CollectCoinSound()
     {
         audioSource.PlayOneShot(coinSoundClip);
+    }
+    public void CountDownSound()
+    {
+        audioSource.PlayOneShot(countDownClip);
     }
 }

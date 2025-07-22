@@ -15,12 +15,13 @@ public class LevelStarter : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         countDown3.SetActive(true);
+        SoundManager.instance.CountDownSound();
         yield return new WaitForSeconds(1f);
         countDown2.SetActive(true);
         yield return new WaitForSeconds(1f);
         countDown1.SetActive(true);
         yield return new WaitForSeconds(1f);
         countDownGo.SetActive(true);
-        PlayerMovement.canMove = true;
+        PlayerMovement.instance.isRun = true;
     }
 }
