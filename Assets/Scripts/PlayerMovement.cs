@@ -115,7 +115,7 @@ public class PlayerMovement : MonoBehaviour
                 float swipeDist = distance.magnitude;
                 float swipeTime = endTime - startTime;
                 bool isJump = distance.y > distance.x;
-                if (swipeDist >= minSwipeDis && swipeTime < maxTime && isJump) Jump();
+                if (swipeDist >= minSwipeDis && swipeTime < maxTime && isJump && isGrounded) Jump();
             }
 
             
