@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SoundManager : MonoBehaviour
 {
@@ -14,6 +15,12 @@ public class SoundManager : MonoBehaviour
     public AudioClip bgMusic;
     public AudioClip gameOver;
     public AudioClip buttonClick;
+    [Header("Mute and Unmute settings")]
+    public Sprite muteSprite;
+    public Sprite unmuteSprite;
+    public Button soundButton;
+    [Header("Sound volume settings")]
+    public Slider slider;
     private void Awake()
     {
         if(instance == null) instance = this;
@@ -22,6 +29,8 @@ public class SoundManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioSource.volume = PlayerPrefs.GetFloat("SoundVolume", 1);
+        slider.value= audioSource.volume;
         PlayMenuBG();
     }
 
@@ -53,6 +62,24 @@ public class SoundManager : MonoBehaviour
         audioSource.clip = bgMusic;
         audioSource.Play();
         audioSource.loop=true;
+    }
+    public void MuteAndUnmuteSound()
+    {
+        if (audioSource.mute)
+        {
+            audioSource.mute = false;
+            soundButton.image.sprite = unmuteSprite;
+        }
+        else
+        {
+            audioSource.mute = true;
+            soundButton.image.sprite = muteSprite;
+        }
+    }
+    public void ChangeSoundVolume()
+    {
+        audioSource.volume=slider.value;
+        PlayerPrefs.SetFloat("SoundVolume",slider.value);
     }
     public void StopBgMusic()
     {

@@ -2,11 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public bool started=false;
+    [Header("Pause and Resume settings")]
+    public Button pausePlayButton;
+    public Text pausePlayText;
+    public Sprite pauseSprite;
+    public Sprite resumeSprite;
     private void Awake()
     {
         if (instance == null) instance = this;
@@ -30,6 +36,23 @@ public class GameManager : MonoBehaviour
         started = true;
         AnimationManager.instance.PlayeAnimation(AnimationManager.AnimationState.Run);
         SoundManager.instance.PlayBgMusic();
+    }
+    public void PauseAndPlay()
+    {
+        if (Time.timeScale == 0)
+        {
+            Time.timeScale = 1;
+            pausePlayText.text = "Pause";
+            pausePlayButton.image.sprite = resumeSprite;
+            FindAnyObjectByType<AudioSource>().UnPause();
+        }
+        else
+        {
+            Time.timeScale = 0;
+            pausePlayText.text = "Resume";
+            pausePlayButton.image.sprite = pauseSprite;
+            FindAnyObjectByType<AudioSource>().Pause();
+        }
     }
     public void GameOver()
     {
