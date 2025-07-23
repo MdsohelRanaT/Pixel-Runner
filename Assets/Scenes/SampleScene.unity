@@ -1279,6 +1279,7 @@ MonoBehaviour:
   - {fileID: 1694742030}
   - {fileID: 7652891833261878468, guid: d9a54f5a02b5a1d4c84ceaad34cf4ff2, type: 3}
   - {fileID: 1165139621476986, guid: 28d1503cc953b9444be6a4fe4bf47db0, type: 3}
+  - {fileID: 7652891833261878468, guid: 77baa75481040d24fa13cf193f020555, type: 3}
   zPos: 50
   isCreatingSection: 0
   secNum: 0
@@ -2527,7 +2528,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6068427894f3d8f42a1bb84a85eb8ad9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.26
+      value: -1.3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6068427894f3d8f42a1bb84a85eb8ad9, type: 3}
       propertyPath: m_LocalPosition.z

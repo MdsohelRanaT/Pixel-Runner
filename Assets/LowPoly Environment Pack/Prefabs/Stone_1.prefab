@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4281780448642680}
   - component: {fileID: 33151566016978686}
   - component: {fileID: 23594601789678856}
+  - component: {fileID: 3493970236459291704}
   m_Layer: 0
   m_Name: Stone_1
   m_TagString: obstacle
@@ -83,3 +84,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3493970236459291704
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1484873974708226}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.21480577, y: 0.16214989, z: 0.2069184}
+  m_Center: {x: -0.0022049746, y: 0.031098725, z: 0.006752481}
