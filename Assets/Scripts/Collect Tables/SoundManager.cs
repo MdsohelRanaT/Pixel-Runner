@@ -13,6 +13,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip menuBgClip;
     public AudioClip bgMusic;
     public AudioClip gameOver;
+    public AudioClip buttonClick;
     private void Awake()
     {
         if(instance == null) instance = this;
@@ -32,6 +33,10 @@ public class SoundManager : MonoBehaviour
     public void CollectCoinSound()
     {
         audioSource.PlayOneShot(coinSoundClip);
+    }
+    public void ButtonClickSound()
+    {
+        audioSource.PlayOneShot(buttonClick);
     }
     public void CountDownSound()
     {
