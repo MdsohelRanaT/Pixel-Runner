@@ -10,6 +10,9 @@ public class SoundManager : MonoBehaviour
     [Header("Audio Clip")]
     public AudioClip coinSoundClip;
     public AudioClip countDownClip;
+    public AudioClip menuBgClip;
+    public AudioClip bgMusic;
+    public AudioClip gameOver;
     private void Awake()
     {
         if(instance == null) instance = this;
@@ -18,7 +21,7 @@ public class SoundManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        PlayMenuBG();
     }
 
     // Update is called once per frame
@@ -33,5 +36,25 @@ public class SoundManager : MonoBehaviour
     public void CountDownSound()
     {
         audioSource.PlayOneShot(countDownClip);
+    }
+    public void PlayMenuBG()
+    {
+        audioSource.clip = menuBgClip;
+        audioSource.Play();
+        audioSource.loop = true;
+    }
+    public void PlayBgMusic()
+    {
+        audioSource.clip = bgMusic;
+        audioSource.Play();
+        audioSource.loop=true;
+    }
+    public void StopBgMusic()
+    {
+        audioSource.Stop();
+    }
+    public void GameOverSound()
+    {
+        audioSource.PlayOneShot(gameOver);
     }
 }

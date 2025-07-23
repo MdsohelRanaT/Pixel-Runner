@@ -7049,9 +7049,9 @@ RectTransform:
   - {fileID: 307941380}
   m_Father: {fileID: 1400140290}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -358.32, y: 860}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 181.68, y: -100}
   m_SizeDelta: {x: 363.36, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1372428073
@@ -8489,6 +8489,9 @@ MonoBehaviour:
   audioSource: {fileID: 1628141848}
   coinSoundClip: {fileID: 8300000, guid: b39d49d9928199d4bb4021c0cf286257, type: 3}
   countDownClip: {fileID: 8300000, guid: b2a5484ea62c73c4199dbcc6ffea4ead, type: 3}
+  menuBgClip: {fileID: 8300000, guid: 3bd0615a378e40c489c3d2ee75cbcf87, type: 3}
+  bgMusic: {fileID: 8300000, guid: c2a9169751f3226479318be81a483996, type: 3}
+  gameOver: {fileID: 8300000, guid: 1bede8d12cac38d438bfc7b0c4cf86ec, type: 3}
 --- !u!4 &1628141847
 Transform:
   m_ObjectHideFlags: 0

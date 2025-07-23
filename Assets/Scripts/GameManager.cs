@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
         LevelDistance.instance.StartAddingDis();
         started = true;
         AnimationManager.instance.PlayeAnimation(AnimationManager.AnimationState.Run);
+        SoundManager.instance.PlayBgMusic();
     }
     public void GameOver()
     {
@@ -42,6 +43,8 @@ public class GameManager : MonoBehaviour
         UIManager.instance.GameOverMenu();
         LevelDistance.instance.StopAddingDis();
         AnimationManager.instance.PlayeAnimation(AnimationManager.AnimationState.FallBack);
+        SoundManager.instance.StopBgMusic();
+        SoundManager.instance.GameOverSound();
     }
     public void Restart()
     {
