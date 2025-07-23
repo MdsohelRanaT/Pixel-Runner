@@ -25,13 +25,16 @@ public class AnimationManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     public void PlayeAnimation(AnimationState state)
     {
-        string newState = state.ToString();
-        animator.ResetTrigger(currentState);
-        animator.SetTrigger(newState);
-        currentState = newState;
+        if(animator != null)
+        {
+            string newState = state.ToString();
+            animator.ResetTrigger(currentState);
+            animator.SetTrigger(newState);
+            currentState = newState;
+        }
     }
 }

@@ -19,7 +19,7 @@ public class LevelDistance : MonoBehaviour
     }
     private void Start()
     {
-        StartCoroutine("AddingDis");
+        
     }
     void Update()
     {
@@ -34,7 +34,10 @@ public class LevelDistance : MonoBehaviour
             yield return new WaitForSeconds(disDelay);
         }
     }
-
+    public void StartAddingDis()
+    {
+        StartCoroutine("AddingDis");
+    }
     public void StopAddingDis()
     {
         StopCoroutine("AddingDis");

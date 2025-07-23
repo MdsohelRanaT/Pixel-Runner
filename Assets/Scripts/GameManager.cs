@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         LevelStarter.instance.StartCounting();
+        LevelDistance.instance.StartAddingDis();
         started = true;
         AnimationManager.instance.PlayeAnimation(AnimationManager.AnimationState.Run);
     }
